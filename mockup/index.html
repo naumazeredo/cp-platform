@@ -8,8 +8,8 @@
     <title>CP Platform</title>
 
     <!-- Bootstrap -->
-    <!--<link href="vendor/bootstrap.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
 <style>
 /* Whole page */
@@ -73,6 +73,7 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   font-size: small;
   background-color: white;
   border: 1px solid #ccc;
+  border-top: none;
 }
 
 #user-menu.collapse {
@@ -98,7 +99,7 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 
 #user-menu ul li a {
   position: relative;
-  padding: 4px 24px;
+  padding: 4px 32px;
   text-decoration: none;
 }
 
@@ -116,6 +117,10 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   border: 1px solid #ccc;
 }
 
+.list .fa {
+  font-size: 14px;
+}
+
 .list > ul {
   list-style: none;
   padding: 4px;
@@ -124,6 +129,11 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 .list > ul > li {
   font-size: large;
   margin: 10px;
+  margin-right: 0;
+}
+
+.list > ul > ul {
+  list-style: none;
 }
 
 .list > ul > ul > li {
@@ -142,7 +152,7 @@ a:hover, a:focus { text-decoration: none; color: #444; }
         </a>
       </div>
       <div class="header-right">
-        <a href="#" data-toggle="collapse" data-target="#user-menu">
+        <a href="#" class="user-menu-toggle" data-toggle="collapse" data-target="#user-menu">
           <span>username</span> <img src="assets/user.png" class="header-logo"/>
         </a>
       </div>
@@ -151,7 +161,9 @@ a:hover, a:focus { text-decoration: none; color: #444; }
     <div id="user-menu" class="collapse">
       <ul>
         <li><a href="#">Account</a></li>
+        <li><a href="#">Progress</a></li>
         <li><a href="#">Settings</a></li>
+        <li><a href="#">Help</a></li>
         <li><a href="#">Log out</a></li>
       </ul>
     </div>
@@ -163,21 +175,69 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 
     <div class="container list">
       <ul>
-        <li>Section 1</li>
+        <li>
+          <a href="#">Section 1</a>
+          <span class="fa fa-star-o pull-right"></span>
+          <span class="fa fa-star-o pull-right"></span>
+          <span class="fa fa-star-o pull-right"></span>
+        </li>
         <ul>
-          <li>Section 1.1</li>
-          <li>Section 1.2</li>
+          <li>
+            <a href="#">Section 1.1</a>
+            <span class="fa fa-star-o pull-right"></span>
+            <span class="fa fa-star-o pull-right"></span>
+            <span class="fa fa-star-half-o pull-right"></span>
+          </li>
+          <li>
+            <a href="#">Section 1.2</a>
+            <span class="fa fa-star-o pull-right"></span>
+            <span class="fa fa-star-o pull-right"></span>
+            <span class="fa fa-star pull-right"></span>
+          </li>
         </ul>
 
-        <li>Section 2</li>
+        <li>
+          <a href="#">Section 2</a>
+          <span class="fa fa-star-o pull-right"></span>
+          <span class="fa fa-star-half-o pull-right"></span>
+          <span class="fa fa-star pull-right"></span>
+        </li>
         <ul>
-          <li>Section 2.1</li>
-          <li>Section 2.2</li>
+          <li>
+            <a href="#">Section 2.1</a>
+            <span class="fa fa-star-o pull-right"></span>
+            <span class="fa fa-star pull-right"></span>
+            <span class="fa fa-star pull-right"></span>
+          </li>
+          <li>
+            <a href="#">Section 2.2</a>
+            <span class="fa fa-star-half-o pull-right"></span>
+            <span class="fa fa-star pull-right"></span>
+            <span class="fa fa-star pull-right"></span>
+          </li>
+          <li>
+            <a href="#">Section 2.3</a>
+            <span class="fa fa-star pull-right"></span>
+            <span class="fa fa-star pull-right"></span>
+            <span class="fa fa-star pull-right"></span>
+          </li>
         </ul>
       </ul>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+// Closes user menu when clicking outside
+$(document).ready(function () {
+  $(document).click(function (event) {
+    var clickover = $(event.target);
+    var _opened = $("#user-menu").hasClass("collapse in");
+    if (_opened === true && !clickover.hasClass("user-menu-toggle")) {
+      $(".user-menu-toggle").click();
+    }
+  });
+});
+    </script>
   </body>
 </html>
