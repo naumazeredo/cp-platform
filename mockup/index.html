@@ -141,6 +141,21 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   margin: 4px auto;
 }
 
+.difficulty {
+  display: block;
+}
+
+.difficulty.difficulty-newbie                    { color: lightgray; }
+.difficulty.difficulty-pupil                     { color: lightgreen; }
+.difficulty.difficulty-specialist                { color: mediumaquamarine; }
+.difficulty.difficulty-expert                    { color: lightsteelblue; }
+.difficulty.difficulty-candidate-master          { color: violet; }
+.difficulty.difficulty-master                    { color: khaki; }
+.difficulty.difficulty-international-master      { color: sandybrown; }
+.difficulty.difficulty-grandmaster               { color: salmon; }
+.difficulty.difficulty-international-grandmaster { color: crimson; }
+.difficulty.difficulty-legendary-grandmaster     { color: darkred; }
+
 </style>
   </head>
   <body >
@@ -177,62 +192,69 @@ a:hover, a:focus { text-decoration: none; color: #444; }
       <ul>
         <li>
           <a href="#">Section 1</a>
-          <span class="pull-right">
-            <i class="fa fa-star-o"></i>
-            <i class="fa fa-star-o"></i>
-            <i class="fa fa-star-o"></i>
-          </span>
+          <a href="#" class="difficulty difficulty-newbie pull-right" data-toggle="tooltip" title="Newbie 0-1199">
+            <i class="fa fa-square"></i>
+          </a>
         </li>
         <ul>
           <li>
             <a href="#">Section 1.1</a>
-            <span class="pull-right">
-              <i class="fa fa-star-half-o"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
+            <span class="difficulty difficulty-pupil pull-right" data-toggle="tooltip" title="Pupil 1200-1399">
+              <i class="fa fa-square"></i>
             </span>
           </li>
           <li>
             <a href="#">Section 1.2</a>
-            <span class="pull-right">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
+            <span class="difficulty difficulty-specialist pull-right" data-toggle="tooltip" title="Specialist 1400-1599">
+              <i class="fa fa-square"></i>
             </span>
           </li>
         </ul>
 
         <li>
           <a href="#">Section 2</a>
-          <span class="pull-right">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-o"></i>
-            <i class="fa fa-star-o"></i>
+          <span class="difficulty difficulty-expert pull-right" data-toggle="tooltip" title="Expert 1600-1899">
+            <i class="fa fa-square"></i>
           </span>
         </li>
         <ul>
           <li>
             <a href="#">Section 2.1</a>
-            <span class="pull-right">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star-o"></i>
+            <span class="difficulty difficulty-candidate-master pull-right" data-toggle="tooltip" title="Candidate Master 1900-2199">
+              <i class="fa fa-square"></i>
             </span>
           </li>
           <li>
             <a href="#">Section 2.2</a>
-            <span class="pull-right">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star-half-o"></i>
+            <span class="difficulty difficulty-master pull-right" data-toggle="tooltip" title="Master 2200-2299">
+              <i class="fa fa-square"></i>
             </span>
           </li>
           <li>
             <a href="#">Section 2.3</a>
-            <span class="pull-right">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
+            <span class="difficulty difficulty-international-master pull-right" data-toggle="tooltip" title="International Master 2300-2399">
+              <i class="fa fa-square"></i>
+            </span>
+          </li>
+        </ul>
+
+        <li>
+          <a href="#">Section 3</a>
+          <span class="difficulty difficulty-grandmaster pull-right" data-toggle="tooltip" title="Grandmaster 2400-2599">
+            <i class="fa fa-square"></i>
+          </span>
+        </li>
+        <ul>
+          <li>
+            <a href="#">Section 3.1</a>
+            <span class="difficulty difficulty-international-grandmaster pull-right" data-toggle="tooltip" title="International Grandmaster 2600-2899">
+              <i class="fa fa-square"></i>
+            </span>
+          </li>
+          <li>
+            <a href="#">Section 3.2</a>
+            <span class="difficulty difficulty-legendary-grandmaster pull-right" data-toggle="tooltip" title="Legendary Grandmaster 2900+">
+              <i class="fa fa-square"></i>
             </span>
           </li>
         </ul>
@@ -252,6 +274,11 @@ $(document).ready(function () {
     }
   });
 });
+
+// Initialize tooltips
+$(function() {
+  $('[data-toggle="tooltip"]').tooltip()
+})
     </script>
   </body>
 </html>
