@@ -14,6 +14,8 @@
 <style>
 /* Whole page */
 body { background-color: #f5f8fc; }
+a { text-decoration: none; color: black; }
+a:hover, a:focus { text-decoration: none; color: #444; }
 
 /* Header */
 .header {
@@ -30,6 +32,7 @@ body { background-color: #f5f8fc; }
 .header-right {
   position: relative;
   float: right;
+  display: block;
 }
 
 .header-logo {
@@ -61,6 +64,49 @@ body { background-color: #f5f8fc; }
   left: 4px;
 }
 
+/* User menu */
+#user-menu {
+  z-index: 1;
+  position: absolute;
+  top: 52px;
+  right: 30px;
+  font-size: small;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+#user-menu.collapse {
+  display: none;
+}
+
+#user-menu.collapse.in {
+  display: block;
+}
+
+#user-menu ul {
+  color: black;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+#user-menu ul li, #user-menu ul li a {
+  color: black;
+  display: block;
+}
+
+#user-menu ul li a {
+  position: relative;
+  padding: 4px 24px;
+  text-decoration: none;
+}
+
+#user-menu ul li a:hover {
+  color: white;
+  background-color: #aaa;
+}
+
 /* Article List */
 
 .list {
@@ -90,8 +136,24 @@ body { background-color: #f5f8fc; }
   <body >
     <!-- Navigation Bar -->
     <div class="container-fluid header">
-      <div class="header-left"><span>CP Platform</span></div>
-      <div class="header-right"><span>username</span> <img src="assets/user.png" class="header-logo"/></div>
+      <div class="header-left">
+        <a href="index.html">
+          <span>CP Platform</span>
+        </a>
+      </div>
+      <div class="header-right">
+        <a href="#" data-toggle="collapse" data-target="#user-menu">
+          <span>username</span> <img src="assets/user.png" class="header-logo"/>
+        </a>
+      </div>
+    </div>
+
+    <div id="user-menu" class="collapse">
+      <ul>
+        <li><a href="#">Account</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Log out</a></li>
+      </ul>
     </div>
 
     <div class="container form-group has-feedback search">
@@ -115,10 +177,6 @@ body { background-color: #f5f8fc; }
       </ul>
     </div>
 
-    <!--
-    <script src="vendor/jquery.min.js"></script>
-    <script src="vendor/bootstrap.min.js"></script>
-    -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </body>
