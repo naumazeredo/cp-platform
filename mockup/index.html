@@ -8,7 +8,8 @@
     <title>CP Platform</title>
 
     <!-- Bootstrap -->
-    <link href="vendor/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="vendor/bootstrap.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 <style>
 /* Whole page */
@@ -20,7 +21,7 @@ body { background-color: #f5f8fc; }
   background-color: white;
   padding: 12px 24px;
   margin-bottom: 16px;
-  box-shadow: 0 1px 8px #aaa;
+  border-bottom: 1px solid #ccc;
 }
 
 .header-left {
@@ -49,20 +50,15 @@ body { background-color: #f5f8fc; }
   border-radius: 16px;
   border: 1px solid #eee;
   padding-left: 36px;
-  box-shadow: 0 2px 2px #ccc;
-
-  transition: all 0.5s ease;
 }
 
 .search input:focus {
-  border: 1px solid #aaa;
-  box-shadow: 0 4px 8px #aaa !important;
-
-  transition: all 0.5s ease;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 0 4px #ccc;
 }
 
 .search .form-control-feedback {
-  left: 0;
+  left: 4px;
 }
 
 /* Article List */
@@ -71,9 +67,7 @@ body { background-color: #f5f8fc; }
   padding: 12px;
   background-color: white;
   border-radius: 8px;
-
   border: 1px solid #ccc;
-  box-shadow: 0 4px 4px #aaa;
 }
 
 .list > ul {
@@ -121,7 +115,11 @@ body { background-color: #f5f8fc; }
       </ul>
     </div>
 
+    <!--
     <script src="vendor/jquery.min.js"></script>
     <script src="vendor/bootstrap.min.js"></script>
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </body>
 </html>
