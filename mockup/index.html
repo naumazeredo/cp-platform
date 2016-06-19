@@ -11,23 +11,34 @@
     <link href="vendor/bootstrap.min.css" rel="stylesheet">
 
 <style>
-body { background-color: rgb(240, 240, 240); }
-header { padding: 16px 16px; }
+/* Whole page */
+body { background-color: #f5f8fc; }
 
-.header-left { font-size: large; float: left; }
+/* Header */
+.header {
+  z-index: 3;
+  background-color: white;
+  padding: 12px 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 8px #aaa;
+}
+
+.header-left {
+  font-size: large; float: left;
+}
 .header-right {
   position: relative;
   float: right;
 }
-.header-right span {
-  position: absolute;
-  right: 44px;
-}
+
 .header-logo {
-  height: 36px; width: auto;
+  height: 28px; width: auto;
   border-radius: 30%;
   border: 1px solid #aaa;
+  margin-left: 8px;
 }
+
+/* Search bar */
 
 .search {
   padding: 0;
@@ -36,35 +47,43 @@ header { padding: 16px 16px; }
 
 .search input {
   border-radius: 16px;
-  border: 0;
+  border: 1px solid #eee;
   padding-left: 36px;
+  box-shadow: 0 2px 2px #ccc;
+
+  transition: all 0.5s ease;
+}
+
+.search input:focus {
+  border: 1px solid #aaa;
+  box-shadow: 0 4px 8px #aaa !important;
+
+  transition: all 0.5s ease;
 }
 
 .search .form-control-feedback {
   left: 0;
 }
 
+/* Article List */
+
 .list {
   padding: 12px;
   background-color: white;
   border-radius: 8px;
-  border: 1px solid #ddd;
-  border-left: 2px solid #777;
-  border-right: 2px solid #777;
+
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 4px #aaa;
 }
 
 .list > ul {
   list-style: none;
-  padding-left: 4px;
+  padding: 4px;
 }
 
 .list > ul > li {
   font-size: large;
-  margin-bottom: 8px;
-}
-
-.list > ul > ul {
-  margin-top: 8px;
+  margin: 10px;
 }
 
 .list > ul > ul > li {
@@ -76,12 +95,10 @@ header { padding: 16px 16px; }
   </head>
   <body >
     <!-- Navigation Bar -->
-    <header>
-      <div class="container-fluid">
-        <div class="header-left"><span>CP Platform</span></div>
-        <div class="header-right"><span>username</span> <img src="assets/user.png" class="header-logo"/></div>
-      </div>
-    </header>
+    <div class="container-fluid header">
+      <div class="header-left"><span>CP Platform</span></div>
+      <div class="header-right"><span>username</span> <img src="assets/user.png" class="header-logo"/></div>
+    </div>
 
     <div class="container form-group has-feedback search">
       <input type="text" class="form-control" placeholder="Search">
