@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>CP Platform</title>
+
+    <!-- Bootstrap -->
+    <link href="vendor/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body { background-color: rgb(240, 240, 240); }
+header { padding: 16px 16px; }
+
+.header-left { font-size: large; float: left; }
+.header-right {
+  position: relative;
+  float: right;
+}
+.header-right span {
+  position: absolute;
+  right: 44px;
+}
+.header-logo {
+  height: 36px; width: auto;
+  border-radius: 30%;
+  border: 1px solid #aaa;
+}
+
+.search {
+  padding: 0;
+  margin: 12px auto;
+}
+
+.search input {
+  border-radius: 16px;
+  border: 0;
+  padding-left: 36px;
+}
+
+.search .form-control-feedback {
+  left: 0;
+}
+
+.list {
+  padding: 12px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  border-left: 2px solid #777;
+  border-right: 2px solid #777;
+}
+
+.list > ul {
+  list-style: none;
+  padding-left: 4px;
+}
+
+.list > ul > li {
+  font-size: large;
+  margin-bottom: 8px;
+}
+
+.list > ul > ul {
+  margin-top: 8px;
+}
+
+.list > ul > ul > li {
+  font-size: medium;
+  margin: 4px auto;
+}
+
+</style>
+  </head>
+  <body >
+    <!-- Navigation Bar -->
+    <header>
+      <div class="container-fluid">
+        <div class="header-left"><span>CP Platform</span></div>
+        <div class="header-right"><span>username</span> <img src="assets/user.png" class="header-logo"/></div>
+      </div>
+    </header>
+
+    <div class="container form-group has-feedback search">
+      <input type="text" class="form-control" placeholder="Search">
+      <i class="form-control-feedback glyphicon glyphicon-search"></i>
+    </div>
+
+    <div class="container list">
+      <ul>
+        <li>Section 1</li>
+        <ul>
+          <li>Section 1.1</li>
+          <li>Section 1.2</li>
+        </ul>
+
+        <li>Section 2</li>
+        <ul>
+          <li>Section 2.1</li>
+          <li>Section 2.2</li>
+        </ul>
+      </ul>
+    </div>
+
+    <script src="vendor/jquery.min.js"></script>
+    <script src="vendor/bootstrap.min.js"></script>
+  </body>
+</html>
