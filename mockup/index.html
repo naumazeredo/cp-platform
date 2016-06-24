@@ -13,13 +13,15 @@
 
 <style>
 /* Whole page */
+* { position: relative; }
 body { background-color: #f5f8fc; }
 a { text-decoration: none; color: black; }
 a:hover, a:focus { text-decoration: none; color: #444; }
+.no-padding { padding: 0; }
 
 /* Header */
 .header {
-  z-index: 3;
+  z-index: 2;
   background-color: white;
   padding: 12px 24px;
   margin-bottom: 16px;
@@ -30,7 +32,6 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   font-size: large; float: left;
 }
 .header-right {
-  position: relative;
   float: right;
   display: block;
 }
@@ -66,7 +67,7 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 
 /* User menu */
 #user-menu {
-  z-index: 1;
+  z-index: 3;
   position: absolute;
   top: 52px;
   right: 30px;
@@ -98,7 +99,6 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 }
 
 #user-menu ul li a {
-  position: relative;
   padding: 4px 32px;
   text-decoration: none;
 }
@@ -133,7 +133,6 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 
 .list>ul>li,
 .list>ul>li>a {
-  position: relative;
   display: block;
 }
 
@@ -156,7 +155,6 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 
 .list>ul>li>ul>li,
 .list>ul>li>ul>li>a {
-  position: relative;
   display: block;
 }
 
@@ -197,7 +195,8 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   top: 8px;
 }
 
-.difficulty { text-shadow: 0px 1px 1px black; }
+.difficulty.difficulty-icon { text-shadow: 0px 1px 1px black; }
+
 .difficulty.difficulty-newbie                    { color: #cccccc; }
 .difficulty.difficulty-pupil                     { color: #77ff77; }
 .difficulty.difficulty-specialist                { color: #77ddbb; }
@@ -208,6 +207,17 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 .difficulty.difficulty-grandmaster               { color: #ff7777; }
 .difficulty.difficulty-international-grandmaster { color: #ff3333; }
 .difficulty.difficulty-legendary-grandmaster     { color: #aa0000; }
+
+.difficulty.difficulty-newbie-bg                    { background-color: #cccccc; }
+.difficulty.difficulty-pupil-bg                     { background-color: #77ff77; }
+.difficulty.difficulty-specialist-bg                { background-color: #77ddbb; }
+.difficulty.difficulty-expert-bg                    { background-color: #aaaaff; }
+.difficulty.difficulty-candidate-master-bg          { background-color: #ff88ff; }
+.difficulty.difficulty-master-bg                    { background-color: #ffcc88; }
+.difficulty.difficulty-international-master-bg      { background-color: #ffbb55; }
+.difficulty.difficulty-grandmaster-bg               { background-color: #ff7777; }
+.difficulty.difficulty-international-grandmaster-bg { background-color: #ff3333; }
+.difficulty.difficulty-legendary-grandmaster-bg     { background-color: #aa0000; }
 
 .accepted>a {
   border-left: 6px solid #d4edc9 !important;
@@ -258,25 +268,25 @@ a:hover, a:focus { text-decoration: none; color: #444; }
             <li>
               <a href="#">Section 1.1</a>
               <span class="topic-information">
-                <i class="difficulty difficulty-newbie glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Newbie 0-1199"></i>
+                <i class="difficulty difficulty-icon difficulty-newbie glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Newbie 0-1199"></i>
               </span>
             </li>
             <li class="accepted">
               <a href="#">Section 1.2</a>
               <span class="topic-information">
-                <i class="difficulty difficulty-pupil glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Pupil 1200-1399"></i>
+                <i class="difficulty difficulty-icon difficulty-pupil glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Pupil 1200-1399"></i>
               </span>
             </li>
             <li>
               <a href="#">Section 1.3</a>
               <span class="topic-information">
-                <i class="difficulty difficulty-specialist glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Specialist 1400-1599"></i>
+                <i class="difficulty difficulty-icon difficulty-specialist glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Specialist 1400-1599"></i>
               </span>
             </li>
             <li>
               <a href="#">Section 1.4</a>
               <span class="topic-information">
-                <i class="difficulty difficulty-expert glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Expert 1600-1899"></i>
+                <i class="difficulty difficulty-icon difficulty-expert glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Expert 1600-1899"></i>
               </span>
             </li>
           </ul>
@@ -292,19 +302,19 @@ a:hover, a:focus { text-decoration: none; color: #444; }
             <li>
               <a href="#">Section 2.1</a>
               <span class="topic-information">
-                <i class="difficulty difficulty-candidate-master glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Candidate Master 1900-2199"></i>
+                <i class="difficulty difficulty-icon difficulty-candidate-master glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Candidate Master 1900-2199"></i>
               </span>
             </li>
             <li>
               <a href="#">Section 2.2</a>
               <span class="topic-information">
-                <i class="difficulty difficulty-master glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Master 2200-2299"></i>
+                <i class="difficulty difficulty-icon difficulty-master glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Master 2200-2299"></i>
               </span>
             </li>
             <li>
               <a href="#">Section 2.3</a>
               <span class="topic-information">
-                <i class="difficulty difficulty-international-master glyphicon glyphicon-bookmark" data-toggle="tooltip" title="International Master 2300-2399"></i>
+                <i class="difficulty difficulty-icon difficulty-international-master glyphicon glyphicon-bookmark" data-toggle="tooltip" title="International Master 2300-2399"></i>
               </span>
             </li>
           </ul>
@@ -320,19 +330,19 @@ a:hover, a:focus { text-decoration: none; color: #444; }
             <li>
               <a href="#">Section 3.1</a>
               <span class="topic-information">
-                <i class="difficulty difficulty-grandmaster glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Grandmaster 2400-2599"></i>
+                <i class="difficulty difficulty-icon difficulty-grandmaster glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Grandmaster 2400-2599"></i>
               </span>
             </li>
             <li>
               <a href="#">Section 3.2</a>
               <span class="topic-information">
-                <i class="difficulty difficulty-international-grandmaster glyphicon glyphicon-bookmark" data-toggle="tooltip" title="International Grandmaster 2600-2899"></i>
+                <i class="difficulty difficulty-icon difficulty-international-grandmaster glyphicon glyphicon-bookmark" data-toggle="tooltip" title="International Grandmaster 2600-2899"></i>
               </span>
             </li>
             <li>
               <a href="#">Section 3.2</a>
               <span class="topic-information">
-                <i class="difficulty difficulty-legendary-grandmaster glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Legendary Grandmaster 2900+"></i>
+                <i class="difficulty difficulty-icon difficulty-legendary-grandmaster glyphicon glyphicon-bookmark" data-toggle="tooltip" title="Legendary Grandmaster 2900+"></i>
               </span>
             </li>
           </ul>
@@ -354,6 +364,7 @@ $(document).ready(function () {
   });
 });
 
+// Categories caret
 $('.category-body').on('shown.bs.collapse', function() {
   $(this).parent().find('.glyphicon-triangle-right').removeClass('glyphicon-triangle-right').addClass('glyphicon-triangle-bottom');
 }).on('hidden.bs.collapse', function() {
