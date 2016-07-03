@@ -1,5 +1,4 @@
 /* Whole page */
-/** { position: relative; }*/
 html, body { height: 100%; }
 body { background-color: #f5f8fc; }
 a { text-decoration: none; color: black; }
@@ -42,6 +41,7 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 
 /* Page */
 .page-wrapper {
+  position: relative;
   min-height: 100%;
   padding-top: 60px;
   margin-bottom: -60px;
@@ -49,6 +49,8 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 
 /* Footer */
 .footer {
+  position: relative;
+  z-index: 2;
   background: white;
   padding-top: 16px;
   width: 100%;
@@ -122,13 +124,20 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   background-color: #aaa;
 }
 
+/* Page content */
+
+.content,
+.list {
+  position: relative;
+  padding: 12px 15px;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
 /* Topics List */
 
 .list {
-  position: relative;
   padding: 12px 0;
-  background-color: white;
-  border: 1px solid #ccc;
 }
 
 .list .fa {
