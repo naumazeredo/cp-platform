@@ -1,6 +1,6 @@
 /* Whole page */
 html, body { height: 100%; }
-body { background-color: #f5f8fc; }
+body { position: relative; background-color: #f5f8fc; }
 a { text-decoration: none; color: black; }
 a:hover, a:focus { text-decoration: none; color: #444; }
 .no-padding { padding: 0; }
@@ -13,14 +13,10 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 
 /* Header */
 .header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
   z-index: 2;
+  width: 100%;
   background-color: white;
   padding: 12px 24px;
-  margin-bottom: 16px;
   border-bottom: 1px solid #ddd;
 }
 
@@ -43,13 +39,17 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 .page-wrapper {
   position: relative;
   min-height: 100%;
-  padding-top: 60px;
-  margin-bottom: -60px;
+}
+
+.page {
+  padding-bottom: 72px;
 }
 
 /* Footer */
 .footer {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+
   z-index: 2;
   background: white;
   padding-top: 16px;
@@ -59,12 +59,21 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   border-top: 1px solid #ddd;
 }
 
-/* Search bar */
+/* Topic title */
 
+.topic-title,
 .search {
   padding: 0;
   margin: 12px auto;
 }
+
+.topic-title {
+  font-size: large;
+  font-weight: 600;
+  padding-left: 6px;
+}
+
+/* Search bar */
 
 .search input {
   border-radius: 16px;
