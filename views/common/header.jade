@@ -1,0 +1,16 @@
+.header
+  .container-fluid
+    .header-left
+      a(href="/")
+        span CP Platform
+    .header-right
+      a.user-menu-toggle(href="#", data-toggle="collapse", data-target="#user-menu")
+        span username
+        img.header-logo(src="/images/user.png")
+    #user-menu.collapse
+      ul
+        li: a(href="#") Account
+        li: a(href="#") Progress
+        li: a(href="#") Settings
+        li: a(href="#") Help
+        li: a(href="#") Logout

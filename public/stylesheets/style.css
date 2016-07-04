@@ -1,0 +1,283 @@
+/* Whole page */
+html, body { height: 100%; }
+body { position: relative; background-color: #f5f8fc; }
+a { text-decoration: none; color: black; }
+a:hover, a:focus { text-decoration: none; color: #444; }
+.no-padding { padding: 0; }
+
+/* Tooltip */
+.tooltip-inner {
+  max-width: none;
+  white-space: nowrap;
+}
+
+/* Header */
+.header {
+  z-index: 2;
+  width: 100%;
+  background-color: white;
+  padding: 12px 24px;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-left {
+  float: left;
+  font-size: large;
+  display: block;
+}
+.header-right {
+  float: right;
+  display: block;
+}
+
+.header-logo {
+  height: 28px; width: auto;
+  border-radius: 30%;
+  border: 1px solid #aaa;
+  margin-left: 8px;
+}
+
+/* Page */
+.page-wrapper {
+  position: relative;
+  min-height: 100%;
+}
+
+.page {
+  padding-bottom: 72px;
+  padding-top: 12px;
+}
+
+/* Page menu */
+
+.menu {
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 6px 15px;
+  margin-bottom: 12px;
+}
+
+.menu>ul {
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+
+.menu>ul>li {
+  display: block;
+  float: left;
+  margin-right: 8px;
+  padding-top: 2px;
+}
+
+.menu>ul>li.active {
+  border-bottom: 2px solid #aaa;
+  border-top: 2px solid #aaa;
+  padding-top: 0;
+}
+
+.search {
+  margin: 0;
+  height: 24px;
+}
+
+.search input {
+  height: 24px;
+  padding: 0px 8px;
+}
+
+.search .form-control-feedback {
+  top: -3px;
+}
+
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 0;
+
+  z-index: 2;
+  background: white;
+  padding-top: 16px;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+/* Topic title */
+
+.topic-title {
+/*.search {*/
+  padding: 0;
+  margin: 12px auto;
+}
+
+.topic-title {
+  font-size: large;
+  font-weight: 600;
+  padding-left: 6px;
+}
+
+/* User menu */
+#user-menu {
+  z-index: 3;
+  position: absolute;
+  top: 52px;
+  right: 0;
+  font-size: small;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-right: none;
+}
+
+#user-menu.collapse {
+  display: none;
+}
+
+#user-menu.collapse.in {
+  display: block;
+}
+
+#user-menu ul {
+  color: black;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+#user-menu ul li, #user-menu ul li a {
+  color: black;
+  display: block;
+}
+
+#user-menu ul li a {
+  padding: 4px 72px 4px 32px;
+  text-decoration: none;
+}
+
+#user-menu ul li a:hover {
+  color: white;
+  background-color: #aaa;
+}
+
+/* Page content */
+
+.topic-content,
+.list {
+  position: relative;
+  padding: 12px 15px;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+/* Topics List */
+
+.list {
+  padding: 12px 0;
+}
+
+.list .fa {
+  font-size: 14px;
+}
+
+.list>ul {
+  list-style: none;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.list>ul>li>a:hover {
+  background-color: snow;
+}
+
+.list>ul>li,
+.list>ul>li>a {
+  position: relative;
+  display: block;
+}
+
+.list>ul>li>a {
+  padding: 8px 20px;
+}
+
+.list>ul>li>a>.glyphicon {
+  font-size: x-small;
+}
+
+.list>ul>li>a>.category-title {
+  font-size: large;
+}
+
+.list>ul>li>ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.list>ul>li>ul>li,
+.list>ul>li>ul>li>a {
+  position: relative;
+  display: block;
+}
+
+.list>ul>li>ul>li>a {
+  font-size: medium;
+  padding: 8px 40px;
+}
+
+.list>ul>li>ul>li>a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 2%;
+  width: 96%;
+  border-bottom: 1px dotted #ddd;
+}
+
+.list>ul>li>ul>li:hover>a {
+  border-left: 4px solid #cfcfdf;
+  padding-left: 36px;
+  background-color: snow;
+}
+
+.category-information,
+.topic-information {
+  display: block;
+  position: absolute;
+}
+
+.category-information {
+  font-size: x-small;
+  right: 24px;
+  bottom: 12px;
+}
+
+.topic-information {
+  right: 40px;
+  top: 8px;
+}
+
+.difficulty.difficulty-icon { text-shadow: 0px 1px 1px black; }
+
+.difficulty.difficulty-0 { color: #cccccc; }
+.difficulty.difficulty-1 { color: #77ff77; }
+.difficulty.difficulty-2 { color: #77ddbb; }
+.difficulty.difficulty-3 { color: #aaaaff; }
+.difficulty.difficulty-4 { color: #ff88ff; }
+.difficulty.difficulty-5 { color: #ffcc88; }
+.difficulty.difficulty-6 { color: #ffbb55; }
+.difficulty.difficulty-7 { color: #ff7777; }
+.difficulty.difficulty-8 { color: #ff3333; }
+.difficulty.difficulty-9 { color: #aa0000; }
+
+.accepted:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-left: 6px solid #d4edc9 !important;
+}
