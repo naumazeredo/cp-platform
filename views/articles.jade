@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .container.list
+    ul
+      - sections = [{title: 'Section 1', topics: [{title: 'Section 1.1', url: '/articles/0', difficulty: 0}, {title: 'Section 1.2', url: '/articles/1', difficulty: 1}]}, {title: 'Section 2', topics: [{title: 'Section 2.1', url: '/articles/2', difficulty: 2}, {title: 'Section 2.2', url: '/articles/3', difficulty: 3}]}];
+      each section, index in sections
+        li
+          a(href='#sec'+index, data-toggle='collapse')
+            span.category-title= section.title
+            span.glyphicon.glyphicon-triangle-bottom(aria-hidden='true')
+            //- TODO(naum): change to calculated value
+            span.category-information 1/4
+          ul.category-body.collapse.in(id='sec'+index, aria-expanded='true')
+            each topic in section.topics
+              li
+                a(href=topic.url)= topic.title
+                span.topic-information
+                  - difficulties = ["Newbie 0-1199", "Pupil 1200-1399", "Specialist 1400-1599", "Expert 1600-1899", "Candidate Master 1900-2199", "Master 2200-2299", "International Master 2300-2399", "Grandmaster 2400-2599", "International Grandmaster 2600-2899", "Legendary Grandmaster 2900+"];
+                  i.difficulty.difficulty-icon.glyphicon.glyphicon-bookmark(class='difficulty-'+topic.difficulty, data-toggle="tooltip", title=difficulties[topic.difficulty])
