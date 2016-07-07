@@ -165,19 +165,14 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 
 /* Page content */
 
-.topic-content,
-.list {
+.page-content {
   position: relative;
-  padding: 12px 15px;
+  padding: 12px 0;
   background-color: white;
   border: 1px solid #ccc;
 }
 
 /* Topics List */
-
-.list {
-  padding: 12px 0;
-}
 
 .list .fa {
   font-size: 14px;

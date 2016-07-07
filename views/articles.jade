@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .container.list
+  .list
     ul
       - sections = [{title: 'Section 1', topics: [{title: 'Section 1.1', url: '/articles/0', difficulty: 0}, {title: 'Section 1.2', url: '/articles/1', difficulty: 1}]}, {title: 'Section 2', topics: [{title: 'Section 2.1', url: '/articles/2', difficulty: 2}, {title: 'Section 2.2', url: '/articles/3', difficulty: 3}]}];
       each section, index in sections
