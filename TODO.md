@@ -12,9 +12,12 @@
   - [ ] Login
   - [ ] New/Edit article
   - [ ] User settings
+  - [ ] Search
   - [ ] Pending articles (extra)
 - [ ] Create database
 - [ ] Configure Docker Compose
+- [ ] Add LaTeX support (MathJax)
+- [ ] Add image upload (Dropzone)
 
 # Doing
 
