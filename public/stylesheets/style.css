@@ -4,6 +4,7 @@ body { position: relative; background-color: #f5f8fc; }
 a { text-decoration: none; color: black; }
 a:hover, a:focus { text-decoration: none; color: #444; }
 .no-padding { padding: 0; }
+hr { width: 80%; }
 
 /* Tooltip */
 .tooltip-inner {
@@ -105,15 +106,15 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   border-top: 1px solid #ddd;
 }
 
-/* Topic title */
+/* article title */
 
-.topic-title {
+.article-title {
 /*.search {*/
   padding: 0;
   margin: 12px auto;
 }
 
-.topic-title {
+.article-title {
   font-size: large;
   font-weight: 600;
   padding-left: 6px;
@@ -172,7 +173,7 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   border: 1px solid #ccc;
 }
 
-/* Topics List */
+/* articles List */
 
 .list .fa {
   font-size: 14px;
@@ -207,6 +208,10 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   font-size: large;
 }
 
+.list>ul>li>a>.category-caret {
+  margin-left: 6px;
+}
+
 .list>ul>li>ul {
   list-style: none;
   padding-left: 0;
@@ -239,7 +244,7 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 }
 
 .category-information,
-.topic-information {
+.article-information {
   display: block;
   position: absolute;
 }
@@ -250,7 +255,7 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   bottom: 12px;
 }
 
-.topic-information {
+.article-information {
   right: 40px;
   top: 8px;
 }
@@ -277,7 +282,7 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   border-left: 6px solid #d4edc9 !important;
 }
 
-/* Tags */
+/* Category Tags */
 
 .category-tag {
   color: #aaa;
@@ -285,7 +290,7 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   background: #eee;
   margin: 4px;
   padding: 3px 8px;
-  border-radius: 3px;
+  border-radius: 2px;
   display: inline-block;
   border: 1px solid #aaa;
 
@@ -295,7 +300,8 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   transition: all 0.35s ease;
 }
 
-.category-tag:hover {
+.category-tag:hover,
+.category-tag:focus {
   color: black;
 }
 
@@ -303,7 +309,7 @@ a:hover, a:focus { text-decoration: none; color: #444; }
 .category-tag:after {
   content: '';
   position: absolute;
-  border-radius: 3px;
+  border-radius: 2px;
   border-style: solid;
   box-sizing: content-box;
   border-color: black;
@@ -331,5 +337,29 @@ a:hover, a:focus { text-decoration: none; color: #444; }
   left: -1px;
 }
 
-.category-tag:hover:before { width: 100%; }
-.category-tag:hover:after { height: 100%; }
+.category-tag:hover:before,
+.category-tag:focus:before {
+  width: 100%;
+}
+
+.category-tag:hover:after,
+.category-tag:focus:after {
+  height: 100%;
+}
+
+/* Author and collaborators */
+
+.author {
+  position: relative;
+}
+
+/*
+.author:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  border-top: 1px solid #eee;
+}
+*/

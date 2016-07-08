@@ -10,10 +10,10 @@ $(document).ready(function () {
 });
 
 // Categories caret
-$('.category-body').on('shown.bs.collapse', function() {
-  $(this).parent().find('.glyphicon-triangle-right').removeClass('glyphicon-triangle-right').addClass('glyphicon-triangle-bottom');
-}).on('hidden.bs.collapse', function() {
-  $(this).parent().find('.glyphicon-triangle-bottom').removeClass('glyphicon-triangle-bottom').addClass('glyphicon-triangle-right');
+$('.category').on('click', function() {
+  var el = $(this).find('.category-caret');
+  if (el.hasClass('fa-caret-right')) el.removeClass('fa-caret-right').addClass('fa-caret-down');
+  else el.removeClass('fa-caret-down').addClass('fa-caret-right');
 });
 
 // Initialize tooltips
