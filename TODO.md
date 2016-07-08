@@ -1,13 +1,23 @@
+# Done
+
+- [x] Convert HTML mockup to Jade/Pug
+
 # To-Do
 
-- [ ] Convert HTML and CSS mockup to Jade(Pug) and SASS
+- [ ] Convert CSS mockup to SASS
 - [ ] Create login system (GitHub OAuth)
-- [ ] Pages
-  - [ ] Topic list
-  - [ ] Topic page
+- [ ] Create Pages
   - [ ] Glossary
   - [ ] Register
   - [ ] Login
-  - [ ] Pending topics
-  - [ ] New/Edit topic page
-- [ ] Decide database to use (MongoDB / PostgreSQL / Git-based)
+  - [ ] New/Edit article
+  - [ ] User settings
+  - [ ] Pending articles (extra)
+- [ ] Create database
+- [ ] Configure Docker Compose
+
+# Doing
+
+- [ ] Create Pages
+  - [ ] Article list
+  - [ ] Article page
