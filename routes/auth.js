@@ -9,11 +9,11 @@ module.exports = function(passport) {
   /* GET GitHub OAuth2 callback. */
   router.get(
     '/github/callback',
-    passport.authenticate('github', { failureRedirect: '/login' }),
-    function(req, res) {
-      // Successful authentication
-      res.redirect('/');
-    }
+    passport.authenticate('github', {
+      successRedirect: '/',
+      failureRedirect: '/login',
+      failureFlash: true
+    })
   );
 
   return router;

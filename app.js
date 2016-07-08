@@ -5,13 +5,15 @@ var logger       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 
-var passport     = require('passport');
-var session      = require('express-session');
-var github       = require('passport-github2');
+var passport = require('passport');
+var session  = require('express-session');
+var flash    = require('connect-flash');
 
-var mongo        = require('mongodb');
-var db           = require('monk')('localhost/cp-platform');
+var GitHubStrategy = require('passport-github2').Strategy;
+var LocalStrategy  = require('passport-local').Strategy;
 
+var mongo = require('mongodb');
+var db    = require('monk')('localhost/cp-platform');
 
 var app = express();
 app.locals.moment = require('moment');
@@ -36,8 +38,9 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
-passport.use('github', new github.Strategy({
+passport.use(new GitHubStrategy({
     clientID: '3a1030269155c017315a',
     clientSecret: '9e6fcdfabbc2762689108eccd2de01f9b49be79d',
     callbackUrl: "http://127.0.0.1:3000/auth/github/callback"
@@ -59,6 +62,68 @@ passport.use('github', new github.Strategy({
     });
   }
 ));
+
+var bcrypt = require('bcrypt-nodejs');
+
+var isValidPassword = function(user, password, callback) {
+  bcrypt.compare(password, user.password, callback);
+};
+
+var generateHash = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+passport.use('local-signup', new LocalStrategy({
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true
+  },
+  function(req, email, password, done) {
+    db.get('users').findOne({ email : email }, function(err, user) {
+      if (err) {
+        return done(err);
+      }
+
+      if (user) {
+        return done(null, false, { message: 'Email already taken!' });
+      } else {
+        var user = {
+          email : email,
+          password : generateHash(password)
+        };
+
+        db.get('users').insert(user, function(err, res) {
+          done(err, res);
+        });
+      }
+    });
+  }
+));
+
+passport.use('local-login', new LocalStrategy({
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true
+  },
+  function(req, email, password, done) {
+    db.get('users').findOne({ email : email }, function(err, user) {
+      if (err)
+        return done(err);
+
+      if (!user)
+        return done(null, false, { message: 'User not found!' });
+
+      isValidPassword(user, password, function(err, res) {
+        if (err)
+          return done(err);
+        if (!res)
+          return done(null, false, { message: 'Incorrect password!' });
+        return done(null, user);
+      });
+    });
+  }
+));
+
 
 passport.serializeUser(function(user, done) {
   done(null, user._id);
@@ -97,16 +162,17 @@ app.use('/fonts', express.static(path.join(__dirname, '/node_modules/font-awesom
 
 var routes   = require('./routes/index');
 var articles = require('./routes/articles');
-var login    = require('./routes/login');
+
+var login    = require('./routes/login')(passport);
 var logout   = require('./routes/logout');
-//var register = require('./routes/register');
+var signup   = require('./routes/signup')(passport);
 var auth     = require('./routes/auth')(passport);
 
 app.use('/', routes);
 app.use('/articles', articles);
 app.use('/login', login);
 app.use('/logout', logout);
-//app.use('/register', register);
+app.use('/signup', signup);
 app.use('/auth', auth);
 
 // catch 404 and forward to error handler

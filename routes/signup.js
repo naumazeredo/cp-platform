@@ -3,19 +3,18 @@ var router = express.Router();
 
 module.exports = function(passport) {
 
-  /* GET login page. */
+  /* GET signup page. */
   router.get('/', function(req, res) {
-    res.render('login', { title: 'Login', message: req.flash('error') });
+    res.render('signup', { title: 'Sign up', message: req.flash('error') });
   });
 
-  /* POST local login */
-  router.post('/', passport.authenticate('local-login', {
+  /* POST local signup */
+  router.post('/', passport.authenticate('local-signup', {
       successRedirect : '/', // TODO: change to /profile
-      failureRedirect : '/login',
+      failureRedirect : '/signup',
       failureFlash : true
     })
   );
 
-
   return router;
-};
+}

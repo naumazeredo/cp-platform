@@ -2,18 +2,14 @@ extends layout
 
 block content
   .container
-    a(href='/auth/github')
-      button.btn GitHub
     h2
-      span.fa.fa-sign-in Login
+      span.fa.fa-sign-in Sign up
 
-    form(action='/login', method='post')
+    form(action='/signup', method='post')
       .form-group
         label Email
         input.form-control(type='text', name='email')
       .form-group
         label Password
         input.form-control(type='password', name='password')
-      button.btn.btn-warning.btn-lg(type='submit') Login
-    if message.length
-      span= message
+      button.btn.btn-warning.btn-lg(type='submit') Sign up
