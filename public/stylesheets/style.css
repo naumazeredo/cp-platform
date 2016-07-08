@@ -260,18 +260,18 @@ hr { width: 80%; }
   top: 8px;
 }
 
-.difficulty.difficulty-icon { text-shadow: 0px 1px 1px black; }
+.rating.rating-icon { text-shadow: 0px 1px 1px black; }
 
-.difficulty.difficulty-0 { color: #cccccc; }
-.difficulty.difficulty-1 { color: #77ff77; }
-.difficulty.difficulty-2 { color: #77ddbb; }
-.difficulty.difficulty-3 { color: #aaaaff; }
-.difficulty.difficulty-4 { color: #ff88ff; }
-.difficulty.difficulty-5 { color: #ffcc88; }
-.difficulty.difficulty-6 { color: #ffbb55; }
-.difficulty.difficulty-7 { color: #ff7777; }
-.difficulty.difficulty-8 { color: #ff3333; }
-.difficulty.difficulty-9 { color: #aa0000; }
+.rating.rating-0 { color: #cccccc; }
+.rating.rating-1 { color: #77ff77; }
+.rating.rating-2 { color: #77ddbb; }
+.rating.rating-3 { color: #aaaaff; }
+.rating.rating-4 { color: #ff88ff; }
+.rating.rating-5 { color: #ffcc88; }
+.rating.rating-6 { color: #ffbb55; }
+.rating.rating-7 { color: #ff7777; }
+.rating.rating-8 { color: #ff3333; }
+.rating.rating-9 { color: #aa0000; }
 
 .accepted:after {
   content: '';
@@ -284,15 +284,20 @@ hr { width: 80%; }
 
 /* Category Tags */
 
+.category-tags .fa-tags {
+  margin-right: 8px;
+}
+
 .category-tag {
   color: #aaa;
   position: relative;
   background: #eee;
-  margin: 4px;
-  padding: 3px 8px;
+  margin: 3px;
+  padding: 1px 3px;
   border-radius: 2px;
   display: inline-block;
-  border: 1px solid #aaa;
+  border: 1px solid #ccc;
+  font-size: small;
 
   -webkit-transition: all 0.35s ease;
   -moz-transition: all 0.35s ease;
@@ -302,6 +307,7 @@ hr { width: 80%; }
 
 .category-tag:hover,
 .category-tag:focus {
+  background: #ccc;
   color: black;
 }
 
@@ -349,17 +355,12 @@ hr { width: 80%; }
 
 /* Author and collaborators */
 
-.author {
+.article-author {
   position: relative;
+  font-weight: bold;
 }
 
-/*
-.author:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 10%;
-  width: 80%;
-  border-top: 1px solid #eee;
+.article-author:before {
+  content: 'by ';
+  font-weight: normal;
 }
-*/

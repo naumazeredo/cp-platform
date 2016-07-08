@@ -6,12 +6,14 @@ block menuitem
 block content
   .container
     .category-tags
-      a.category-tag(href="#") dp
-      a.category-tag(href="#") graphs
-    //- TODO(naum): receive content by routing
-    :markdown
-      # Topic Content
-      ## small test
-      This is only a test in marked
-      - list elem 1
-      - list elem 2
+      i.fa.fa-tags
+      each category in categories
+        a.category-tag(href=category.url, title=category.title)= category.tag
+    //-
+    //- .requirements
+    //-   | requirements
+    div!= content
+    hr
+    .article-author
+      a.rating(href=author.name, class="rating-"+author.rating)= author.name
+    .article-date= moment(date).fromNow()
