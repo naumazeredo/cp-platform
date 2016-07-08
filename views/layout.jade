@@ -1,5 +1,10 @@
 doctype html
 html
+
+  block menuitem
+    - var active = 'Home';
+  - var menu = { 'Home': '/', 'Articles': '/articles', 'Glossary': '#' };
+
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -17,7 +22,18 @@ html
     .page-wrapper
       include ./common/header.jade
       .page
-        include ./common/menu.jade
+        //- Menu
+        .container.menu
+          ul
+            each value, key in menu
+              if active === key
+                li.active: a(href=value)= key
+              else
+                li: a(href=value)= key
+          .form-group.has-feedback.pull-right.search
+            input.form-control.input-sm(type="text", placeholder="Search")
+            i.form-control-feedback.fa.fa-search(aria-hidden="true")
+
         .container.page-content
           block content
 
