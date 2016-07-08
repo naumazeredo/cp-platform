@@ -4,7 +4,12 @@
       a(href="/")
         span CP Platform
     .header-right
-      a.user-menu-toggle(href="#", data-toggle="collapse", data-target="#user-menu")
-        span username
-        img.header-logo(src="/images/user.png")
+      if user
+        a.user-menu-toggle(href="#", data-toggle="collapse", data-target="#user-menu")
+          span= user.name
+          img.header-logo(src="/images/user.png")
+      else
+        a(href="/register") sign up
+        span.separator or
+        a(href="/login") log in
     include ./usermenu.jade

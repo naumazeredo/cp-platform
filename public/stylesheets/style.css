@@ -19,6 +19,7 @@ hr { width: 80%; }
   background-color: white;
   padding: 12px 24px;
   border-bottom: 1px solid #ddd;
+  height: 53px;
 }
 
 .header-left {
@@ -29,6 +30,7 @@ hr { width: 80%; }
 .header-right {
   float: right;
   display: block;
+  height: 28px;
 }
 
 .header-logo {
@@ -36,6 +38,11 @@ hr { width: 80%; }
   border-radius: 30%;
   border: 1px solid #aaa;
   margin-left: 8px;
+}
+
+.header-right .separator {
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 /* Page */

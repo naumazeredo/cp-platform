@@ -1,13 +1,17 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
+var express      = require('express');
+var path         = require('path');
+var favicon      = require('serve-favicon');
+var logger       = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var bodyParser   = require('body-parser');
 
-var routes = require('./routes/index');
-var articles = require('./routes/articles');
-var users = require('./routes/users');
+var passport     = require('passport');
+var session      = require('express-session');
+var github       = require('passport-github2');
+
+var mongo        = require('mongodb');
+var db           = require('monk')('localhost/cp-platform');
+
 
 var app = express();
 app.locals.moment = require('moment');
@@ -23,6 +27,55 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Configuring Passport
+app.use(session({
+  secret: 'tempsecret',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use('github', new github.Strategy({
+    clientID: '3a1030269155c017315a',
+    clientSecret: '9e6fcdfabbc2762689108eccd2de01f9b49be79d',
+    callbackUrl: "http://127.0.0.1:3000/auth/github/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    var query = { name: profile.displayName };
+    var updates = {
+      name: profile.displayName,
+      someId: profile.id
+    };
+    var options = { upsert: true };
+
+    db.get('users').findOneAndUpdate(query, updates, options, function(err, user) {
+      if (err) {
+        return done(err);
+      } else {
+        return done(null, user);
+      }
+    });
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  db.get('users').findOne(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+app.use(function(req, res, next) {
+  if (req.user) {
+    res.locals.user = req.user;
+  }
+  next();
+});
 
 // ----------------------------------------------------
 // Front-end libraries
@@ -42,9 +95,19 @@ app.use('/css', express.static(path.join(__dirname, '/node_modules/font-awesome/
 app.use('/fonts', express.static(path.join(__dirname, '/node_modules/font-awesome/fonts')));
 // ----------------------------------------------------
 
+var routes   = require('./routes/index');
+var articles = require('./routes/articles');
+var login    = require('./routes/login');
+var logout   = require('./routes/logout');
+//var register = require('./routes/register');
+var auth     = require('./routes/auth')(passport);
+
 app.use('/', routes);
 app.use('/articles', articles);
-app.use('/users', users);
+app.use('/login', login);
+app.use('/logout', logout);
+//app.use('/register', register);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
