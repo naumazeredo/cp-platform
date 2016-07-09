@@ -1,5 +1,8 @@
 extends layout
 
+block menuitem
+  - var active = 'Home';
+
 block content
-  .container
+  .container.page-content
     h2 printf("Welcome\n");

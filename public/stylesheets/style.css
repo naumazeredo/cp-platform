@@ -27,6 +27,7 @@ hr { width: 80%; }
   font-size: large;
   display: block;
 }
+
 .header-right {
   float: right;
   display: block;
@@ -176,9 +177,14 @@ hr { width: 80%; }
 
 .page-content {
   position: relative;
-  padding: 12px 0;
+  padding: 12px 15px;
   background-color: white;
   border: 1px solid #ccc;
+}
+
+.no-horizontal-padding {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* articles List */
@@ -372,3 +378,44 @@ hr { width: 80%; }
   content: 'by ';
   font-weight: normal;
 }
+
+/* Login and signup */
+
+.sign {
+  width: 500px;
+  text-align: center;
+  margin: auto;
+  padding: 12px;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+.sign-social {
+  text-align: center;
+}
+
+.sign-social-buttons {
+  margin: 16px auto;
+}
+
+.sign-local {
+  width: 50%;
+  margin: auto;
+}
+
+.sign-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.sign-errors {
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.signup-confirm .fa {
+  right: 0 !important;
+  visibility: hidden;
+}
+.signup-confirm.has-success .fa-check { visibility: visible; }
+.signup-confirm.has-error .fa-times { visibility: visible; }

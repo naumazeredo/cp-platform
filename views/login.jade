@@ -2,18 +2,26 @@ extends layout
 
 block content
   .container
-    a(href='/auth/github')
-      button.btn GitHub
-    h2
-      span.fa.fa-sign-in Login
+    .sign
+      if message.length
+        p.bg-danger.login-errors= message
 
-    form(action='/login', method='post')
-      .form-group
-        label Email
-        input.form-control(type='text', name='email')
-      .form-group
-        label Password
-        input.form-control(type='password', name='password')
-      button.btn.btn-warning.btn-lg(type='submit') Login
-    if message.length
-      span= message
+      .sign-social
+        .sign-title Social signup
+        .sign-social-buttons
+          a(href='/auth/github')
+            button.btn.btn-primary
+              i.fa.fa-github.fa-3x
+        .text-info no account?
+        a(href='/signup') sign up by e-mail
+
+      hr
+
+      .sign-local
+        .sign-title Login
+        form.form-horizontal(action='/login', method='post')
+          .form-group
+            input.form-control(type='text', name='email', placeholder='Email', required)
+          .form-group
+            input.form-control(type='password', name='password', placeholder='Password', required)
+          button.btn.btn-primary(type='submit') Login

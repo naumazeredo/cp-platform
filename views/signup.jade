@@ -2,14 +2,26 @@ extends layout
 
 block content
   .container
-    h2
-      span.fa.fa-sign-in Sign up
+    .sign
+      if message.length
+        p.bg-danger.sign-errors= message
 
-    form(action='/signup', method='post')
-      .form-group
-        label Email
-        input.form-control(type='text', name='email')
-      .form-group
-        label Password
-        input.form-control(type='password', name='password')
-      button.btn.btn-warning.btn-lg(type='submit') Sign up
+      .sign-local
+        .sign-title Sign up
+        form.signup-form.form-horizontal(action='/signup', method='post')
+          .form-group
+            input.form-control(type='text', name='username', placeholder='Username ([a-zA-Z0-9_-]{3,})', pattern='[a-zA-Z0-9_-]{3,}', required)
+          .form-group
+            input.form-control(type='email', name='email', placeholder='Email', required)
+          .form-group
+            input.form-control(type='password', name='password', placeholder='Password (.{6,})', pattern='.{6,}', required)
+          .form-group.has-feedback.signup-confirm
+            input.form-control(type='password', name='confirm', placeholder='Confirm Password', required)
+            i.form-control-feedback.fa.fa-check(aria-hidden='true')
+            i.form-control-feedback.fa.fa-times(aria-hidden='true')
+          button.btn.btn-primary(type='submit', disabled) Shall we?
+
+      hr
+
+      .text-info already have account?
+      a(href='/login') login

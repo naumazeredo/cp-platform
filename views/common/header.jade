@@ -6,10 +6,8 @@
     .header-right
       if user
         a.user-menu-toggle(href="#", data-toggle="collapse", data-target="#user-menu")
-          span= user.name
+          span= user.profile.username
           img.header-logo(src="/images/user.png")
       else
-        a(href="/signup") sign up
-        span.separator or
         a(href="/login") log in
     include ./usermenu.jade

@@ -2,7 +2,7 @@ doctype html
 html
 
   block menuitem
-    - var active = 'Home';
+    - var active = '';
   - var menu = { 'Home': '/', 'Articles': '/articles', 'Glossary': '#' };
 
   head
@@ -15,8 +15,8 @@ html
 
     //- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
     //- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css')
-    link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     .page-wrapper
@@ -34,8 +34,7 @@ html
             input.form-control.input-sm(type="text", placeholder="Search")
             i.form-control-feedback.fa.fa-search(aria-hidden="true")
 
-        .container.page-content
-          block content
+        block content
 
       include ./common/footer.jade
 
