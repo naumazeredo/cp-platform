@@ -67,7 +67,7 @@ app.use('/fonts', express.static(path.join(__dirname, '/node_modules/font-awesom
 // ----------------------------------------------------
 
 /* Routes */
-var routes   = require('./routes/index');
+var index    = require('./routes/index');
 var articles = require('./routes/articles');
 
 var login    = require('./routes/login');
@@ -75,12 +75,17 @@ var logout   = require('./routes/logout');
 var signup   = require('./routes/signup');
 var auth     = require('./routes/auth');
 
-app.use('/', routes);
+var profile  = require('./routes/profile');
+
+app.use('/', index);
 app.use('/articles', articles);
+
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/signup', signup);
 app.use('/auth', auth);
+
+app.use('/profile', profile);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

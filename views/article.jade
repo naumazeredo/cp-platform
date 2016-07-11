@@ -15,5 +15,5 @@ block content
     div!= content
     hr
     .article-author
-      a.rating(href=author.name, class="rating-"+author.rating)= author.name
+      a.rating(href='/users/'+author.name, class="rating-"+author.rating)= author.name
     .article-date= moment(date).fromNow()
