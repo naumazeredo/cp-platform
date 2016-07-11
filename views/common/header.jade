@@ -8,6 +8,6 @@
         a.user-menu-toggle(href="#", data-toggle="collapse", data-target="#user-menu")
           span= currentUser.profile.username
           img.header-logo(src=currentUser.profile.avatar_url ? currentUser.profile.avatar_url : "/images/user.png")
+        include ./usermenu.jade
       else
         a(href="/login") sign in
-    include ./usermenu.jade
