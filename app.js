@@ -9,6 +9,8 @@ var session      = require('express-session');
 var passport     = require('passport');
 var flash        = require('connect-flash');
 
+require('dotenv').config();
+
 var app = express();
 app.locals.moment = require('moment');
 
@@ -26,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Init session, passport and flash
 app.use(session({
-  secret: 'tempsecret', // TODO(naum): Use env to store secret
+  secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true
 }));
