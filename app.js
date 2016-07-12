@@ -12,7 +12,6 @@ var flash        = require('connect-flash');
 require('dotenv').config();
 
 var app = express();
-app.locals.moment = require('moment');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,7 +41,8 @@ app.use(flash());
 
 // Middleware hold resources for each request
 app.use(function(req, res, next) {
-  res.locals.currentUser = req.user;
+  res.locals.currentUser = req.user; // Set current user
+  app.locals.moment = require('moment'); // Load momentjs
 
   next();
 });

@@ -419,3 +419,30 @@ hr { width: 80%; }
 }
 .signup-confirm.has-success .fa-check { visibility: visible; }
 .signup-confirm.has-error .fa-times { visibility: visible; }
+
+/* Profile */
+
+.profile-left,
+.profile-right {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.profile-header {
+  text-align: center;
+}
+
+.profile-photo {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.profile-username {
+  margin: 6px;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.profile-info > span {
+  font-weight: bold;
+}

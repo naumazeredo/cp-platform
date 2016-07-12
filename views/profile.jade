@@ -1,8 +1,26 @@
 extends layout
 
 block menuitem
-  - var active = 'Articles';
+  - var active = '';
 
 block content
   .container.page-content
-    | Test
+    if user
+      .profile-left.col-xs-3
+        .profile-header
+          img.profile-photo(src=user.profile.avatar_url ? user.profile.avatar_url : '/images/user.png')
+          .profile-username(class="rating-"+user.profile.rating)= user.profile.username
+        hr
+        .profile-infos
+          .profile-info
+            span.col-md-10 Articles written 
+            .col-md-2 0
+          .profile-info
+            span.col-md-10 Articles read 
+            .col-md-2 0
+          .profile-info
+            span.col-md-10 Contribution 
+            .col-md-2 0
+      .profile-right.col-xs-9
+        .profile-activity
+          | Activity
