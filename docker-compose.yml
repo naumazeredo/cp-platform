@@ -1,0 +1,27 @@
+version: '2'
+services:
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: .Dockerfile.dev
+    volumes:
+      - .:/www
+    ports:
+      - "3000:3000"
+    links:
+      - mongo:mongo
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - MONGO_PORT=27017
+  mongo:
+    container_name: mongo
+    image: mongo:3.2
+    ports:
+      - "27017:27017"
+    command: "--smallfiles --logpath=/dev/null"
+    volumes:
+      - data:/data
+volumes:
+  data: {}
