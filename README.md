@@ -19,7 +19,10 @@ Platform to ease Competitive Programming learning.
   - [ ] Pending articles (extra)
 - [ ] Add LaTeX support (MathJax)
 - [ ] Add image upload (Dropzone)
+- [ ] Write _Contributing_ section in README
 
 #### Removed
 
 - [x] Create login system (GitHub OAuth)
+
+## Contributing
