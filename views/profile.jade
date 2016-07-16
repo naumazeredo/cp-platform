@@ -5,22 +5,34 @@ block menuitem
 
 block content
   .container.page-content
-    if user
-      .profile-left.col-xs-3
-        .profile-header
-          img.profile-photo(src=user.profile.avatar_url ? user.profile.avatar_url : '/images/user.png')
-          .profile-username(class="rating-"+user.profile.rating)= user.profile.username
-        hr
-        .profile-infos
-          .profile-info
-            span.col-md-10 Articles written 
-            .col-md-2 0
-          .profile-info
-            span.col-md-10 Articles read 
-            .col-md-2 0
-          .profile-info
-            span.col-md-10 Contribution 
-            .col-md-2 0
-      .profile-right.col-xs-9
+    .profile-left.col-sm-3
+      .profile-header.col-xs-4.col-sm-12
+        img.profile-photo(src=user.profile.avatar_url ? user.profile.avatar_url : '/images/user.png')
+        .profile-username(class="rating-"+user.profile.rating)= user.profile.username
+      hr.hidden-xs
+      .profile-infos.col-xs-8.col-sm-12
+        .profile-info
+          strong Registered
+          span= moment('20151002','YYYYMMDD').fromNow()
+        .profile-info
+          strong Articles written
+          span 0
+        .profile-info
+          strong Articles read
+          span 0
+        .profile-info
+          strong Contribution
+          span 0
+        .profile-info
+          strong Codeforces
+          span kogyblack
+        if currentUser && user.profile.username === currentUser.profile.username
+          button.btn.btn-default.btn-block(style="margin-top: 12px") Edit Information
+    hr.visible-xs
+    .profile-right.col-xs-12.col-sm-9
+      .profile-activities-title Activity
+      .profile-activities
         .profile-activity
-          | Activity
+          | Activity 0
+        .profile-activity
+          | Activity 1

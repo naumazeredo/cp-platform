@@ -443,6 +443,21 @@ hr { width: 80%; }
   font-size: 1.5em;
 }
 
-.profile-info > span {
+.profile-info span {
+  float: right;
+}
+
+.profile-activities-title {
   font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.profile-activity {
+  border: 1px solid #ccc;
+  border-top: none;
+  padding: 12px;
+}
+
+.profile-activity:first-child {
+  border-top: 1px solid #ccc;
 }

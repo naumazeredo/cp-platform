@@ -9,6 +9,10 @@ router.get('/:username', function(req, res, next) {
     if (err)
       next();
 
+    // TODO(naum): Create user not found page
+    if (!user)
+      next();
+
     res.render('profile', { title : 'Profile', user : user });
   });
 });
