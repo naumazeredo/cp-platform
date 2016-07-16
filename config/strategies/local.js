@@ -22,6 +22,8 @@ module.exports = function() {
       passReqToCallback : true
     },
     function(req, username, password, done) {
+      req.flash('tab', 'signup');
+
       var email = req.body.email.toLowerCase();
 
       var usernameRegex = /^[a-zA-Z0-9_-]{3,}$/;
@@ -52,11 +54,10 @@ module.exports = function() {
 
           // User exists
           if (user) {
-            if (user.profile.email === email) {
-              return done(null, false, { message: 'Email already taken!' });
-            } else {
+            if (user.profile.username === username)
               return done(null, false, { message: 'Username already taken!' });
-            }
+            else
+              return done(null, false, { message: 'Email already taken!' });
           }
 
           // Create new user
@@ -78,19 +79,21 @@ module.exports = function() {
   ));
 
   passport.use('local-login', new LocalStrategy({
-      usernameField : 'email',
+      usernameField : 'username',
       passwordField : 'password',
       passReqToCallback : true
     },
-    function(req, email, password, done) {
+    function(req, username, password, done) {
+      req.flash('tab', 'login');
+
       // Find user (case-insensitive)
-      db.get('users').findOne({ 'profile.email': email.toLowerCase() }, function(err, user) {
+      db.get('users').findOne({ usernameLower: username.toLowerCase() }, function(err, user) {
         if (err)
           return done(err);
 
         // User not found
         if (!user)
-          return done(null, false, { message: 'User not found!' });
+          return done(null, false, { message: 'User not found!', tab: 'login' });
 
         // Validate given password
         isValidPassword(user, password, function(err, res, flash) {

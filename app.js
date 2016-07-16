@@ -85,7 +85,7 @@ app.use('/articles', articles);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/signup', signup);
-app.use('/auth', auth);
+//app.use('/auth', auth);
 
 app.use('/profile', profile);
 

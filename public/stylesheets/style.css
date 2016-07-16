@@ -381,13 +381,24 @@ hr { width: 80%; }
 
 /* Login and signup */
 
+.sign-tabs {
+  width: 500px;
+  margin: auto;
+}
+
+.sign-tabs li {
+  width: 50%;
+  text-align: center;
+}
+
 .sign {
   width: 500px;
   text-align: center;
   margin: auto;
   padding: 12px;
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
+  border-top: none;
 }
 
 .sign-social {

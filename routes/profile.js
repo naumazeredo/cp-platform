@@ -3,7 +3,7 @@ var router = express.Router();
 
 var db = require('../config/db');
 
-/* GET profile */
+/* GET user profile */
 router.get('/:username', function(req, res, next) {
   db.get('users').findOne({ 'profile.username' : req.params.username }, function(err, user) {
     if (err)

@@ -1,27 +1,46 @@
 extends layout
 
 block content
+  - var whichTab = function(t) { return tab === t ? 'active' : ''; }
+  - var login = whichTab('login');
+  - var signup = whichTab('signup');
   .container
+    .sign-tabs
+      ul.nav.nav-tabs
+        li(class=login): a(href='#login', data-toggle='tab') Log In
+        li(class=signup): a(href='#signup', data-toggle='tab') Sign Up
     .sign
-      if message.length
-        p.bg-danger.sign-errors= message
+      .tab-content
+        .tab-pane(class=login, id='login')
+          if message.length && tab === 'login'
+            p.bg-danger.sign-errors= message
 
-      .sign-social
-        .sign-title Social signup
-        .sign-social-buttons
-          a(href='/auth/github')
-            button.btn.btn-primary
-              i.fa.fa-github.fa-3x
-        .text-info no account?
-        a(href='/signup') sign up by e-mail
+          //-.sign-social
+            .sign-title Social
+            .sign-social-buttons
+              a(href='/auth/github')
+                button.btn.btn-primary
+                  i.fa.fa-github.fa-3x
+          //-hr
+          .sign-local
+            .sign-title Login
+            form.form-horizontal(action='/login', method='post')
+              .form-group
+                input.form-control(type='text', name='username', placeholder='Username', required)
+              .form-group
+                input.form-control(type='password', name='password', placeholder='Password', required)
+              button.btn.btn-primary(type='submit') Login
+        .tab-pane(class=signup, id='signup')
+          if message.length && tab === 'signup'
+            p.bg-danger.sign-errors= message
 
-      hr
-
-      .sign-local
-        .sign-title Login
-        form.form-horizontal(action='/login', method='post')
-          .form-group
-            input.form-control(type='email', name='email', placeholder='Email', required)
-          .form-group
-            input.form-control(type='password', name='password', placeholder='Password', required)
-          button.btn.btn-primary(type='submit') Login
+          .sign-local
+            .sign-title Sign up
+            form.signup-form.form-horizontal(action='/signup', method='post')
+              .form-group
+                input.form-control(type='text', name='username', placeholder='Username ([a-zA-Z0-9_-]{3,})', pattern='[a-zA-Z0-9_-]{3,}', required)
+              .form-group
+                input.form-control(type='email', name='email', placeholder='Email', required)
+              .form-group
+                input.form-control(type='password', name='password', placeholder='Password (.{6,})', pattern='.{6,}', required)
+              button.btn.btn-primary(type='submit') Shall we?
