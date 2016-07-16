@@ -4,25 +4,14 @@ Platform to ease Competitive Programming learning.
 
 ## Todo List
 
-### Done
-
-- [x] Convert HTML mockup to Jade/Pug
 - [x] Configure Docker Compose
-- [x] Create Pages
-  - [x] Register
-  - [x] Login
-
-### Almost Done
-
-- [ ] Create Pages
-  - [ ] Article list
-  - [ ] Article page
-- [ ] Create database
-
-### To-Do
-
+- [x] Convert HTML mockup to Jade/Pug
 - [ ] Convert CSS mockup to SASS
 - [ ] Create Pages
+  - [x] Register
+  - [x] Login
+  - [ ] Article list
+  - [ ] Article page
   - [ ] Glossary
   - [ ] New/Edit article
   - [ ] User settings
@@ -31,8 +20,6 @@ Platform to ease Competitive Programming learning.
 - [ ] Add LaTeX support (MathJax)
 - [ ] Add image upload (Dropzone)
 
-### Doing
-
-### Removed
+#### Removed
 
 - [x] Create login system (GitHub OAuth)
