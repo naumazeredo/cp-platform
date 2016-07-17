@@ -3,7 +3,6 @@ html
 
   block menuitem
     - var active = '';
-  - var menu = { 'Home': '/', 'Articles': '/articles', 'Glossary': '#' };
 
   head
     meta(charset='utf-8')
@@ -25,6 +24,7 @@ html
         //- Menu
         .container.menu
           ul
+            - var menu = { 'Home': '/', 'Articles': '/articles', 'Glossary': '/glossary' };
             each value, key in menu
               if active === key
                 li.active: a(href=value)= key

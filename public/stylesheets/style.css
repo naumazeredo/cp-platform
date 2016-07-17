@@ -472,3 +472,14 @@ hr { width: 80%; }
 .profile-activity:first-child {
   border-top: 1px solid #ccc;
 }
+
+/* Under Construction */
+
+.construction {
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+  border-radius: 8px;
+  background-color: #5bc0de;
+}
