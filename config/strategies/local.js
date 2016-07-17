@@ -66,6 +66,12 @@ module.exports = function() {
               username : username,
               email : email
             },
+            authored: [],
+            contribution: [],
+            handles: {
+              Codeforces: 'kogyblack'
+            },
+            registeredAt: new Date(),
             password : generateHash(password),
             usernameLower : username.toLowerCase(),
           };

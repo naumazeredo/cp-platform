@@ -13,21 +13,22 @@ block content
       .profile-infos.col-xs-8.col-sm-12
         .profile-info
           strong Registered
-          span= moment('20151002','YYYYMMDD').fromNow()
+          span= moment(user.registeredAt).fromNow()
         .profile-info
           strong Articles written
-          span 0
-        .profile-info
+          span= user.authored.length
+        //-.profile-info
           strong Articles read
           span 0
         .profile-info
           strong Contribution
-          span 0
-        .profile-info
-          strong Codeforces
-          span kogyblack
-        if currentUser && user.profile.username === currentUser.profile.username
-          button.btn.btn-default.btn-block(style="margin-top: 12px") Edit Information
+          span= user.contribution.length
+        each val, key in user.handles
+          .profile-info
+            strong= key
+            span= val
+        //-if currentUser && user.usernameLower === currentUser.usernameLower
+          button.btn.btn-default.btn-block(style="margin-top: 12px") Edit Profile
     hr.visible-xs
     .profile-right.col-xs-12.col-sm-9
       .profile-activities-title Activity
