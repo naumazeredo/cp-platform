@@ -29,15 +29,11 @@ Platform to ease Competitive Programming learning.
 
 ### Install Docker Engine
 
-```
 https://docs.docker.com/engine/installation/
-```
 
 ### Install Docker Compose
 
-```
 https://docs.docker.com/compose/install/
-```
 
 ### Clone repository
 
