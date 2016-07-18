@@ -2,9 +2,47 @@ var express = require('express');
 var router = express.Router();
 var markdown = require('marked');
 
+var db = require('../config/db');
+
 /* GET articles listing. */
 router.get('/', function(req, res, next) {
-  res.render('articles', { title: 'Articles' });
+  // Get all articles published and group by categories (in categories order)
+  db.get('articles').aggregate(
+    [
+      { $match : { 'status' : 'Published' } },
+      {
+        $group: {
+          _id : { $arrayElemAt: [ '$categories', 0 ] },
+          articles : { $push : '$$ROOT' },
+          //rating : { $avg : '$rating' }
+        }
+      },
+      {
+        $lookup : {
+          from : 'categories',
+          localField : '_id',
+          foreignField : 'tag',
+          as : 'category'
+        }
+      },
+      { $unwind : '$category' },
+      { $sort : { 'category.order' : 1 } },
+      {
+        $project : {
+          _id : 0,
+          name : '$category.name',
+          tag : '$category.tag',
+          articles : '$articles'
+        }
+      }
+    ],
+    function(err, categories) {
+      if (err || !categories)
+        next();
+
+      res.render('articles', { title: 'Articles', categories: categories });
+    }
+  );
 });
 
 /* GET article. */

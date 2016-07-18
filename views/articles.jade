@@ -7,18 +7,18 @@ block content
   .container.page-content.no-horizontal-padding
     .list
       ul
-        - categories = [{title: 'Category 1', articles: [{title: 'Article 0', url: '/articles/0', rating: 0}, {title: 'Article 1', url: '/articles/1', rating: 1}]}, {title: 'Category 2', articles: [{title: 'Article 2', url: '/articles/2', rating: 2}, {title: 'Article 3', url: '/articles/3', rating: 3}]}];
-        each category, index in categories
+        each category in categories
           li
-            a.category(href='#sec'+index, data-toggle='collapse')
-              span.category-title= category.title
-              span.category-caret.fa.fa-caret-down(aria-hidden='true')
-              //- TODO(naum): change to calculated value
-              span.category-information 1/4
-            ul.collapse.in(id='sec'+index, aria-expanded='true')
+            a.category(href='#sec'+category.tag, data-toggle='collapse')
+              span.category-title= category.name
+              span.category-caret.fa.fa-caret-down
+              //- TODO(naum): Count total read
+              span.category-information= '0/'+category.articles.length
+            ul.collapse.in(id='sec'+category.tag, aria-expanded='true')
               each article in category.articles
                 li
-                  a(href=article.url)= article.title
+                  // TODO(naum): Insert new and read classes
+                  a(href='/articles/'+article._id)= article.title
                   span.article-information
                     - difficulties = ["Newbie 0-1199", "Pupil 1200-1399", "Specialist 1400-1599", "Expert 1600-1899", "Candidate Master 1900-2199", "Master 2200-2299", "International Master 2300-2399", "Grandmaster 2400-2599", "International Grandmaster 2600-2899", "Legendary Grandmaster 2900+"];
                     i.rating.rating-icon.fa.fa-bookmark(class='rating-'+article.rating, data-toggle="tooltip", title=difficulties[article.rating])
