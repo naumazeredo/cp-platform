@@ -12,9 +12,9 @@ router.get('/', function(req, res, next) {
       { $match : { 'status' : 'Published' } },
       {
         $group: {
-          _id : { $arrayElemAt: [ '$categories', 0 ] },
+          _id : '$category',
           articles : { $push : '$$ROOT' },
-          //rating : { $avg : '$rating' }
+          //rating : { $avg : '$rating' } //TODO(naum): Sort by rating average(?)
         }
       },
       {
