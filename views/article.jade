@@ -7,13 +7,13 @@ block content
   .container.page-content
     .category-tags
       i.fa.fa-tags
-      each category in categories
-        a.category-tag(href=category.url, title=category.title)= category.tag
+      each tag in tags
+        a.category-tag(href='#', title=tag.name)= tag.tag
     //-
     //- .requirements
     //-   | requirements
-    div!= content
+    div!= article.content
     hr
     .article-author
-      a.rating(href='/profile/'+author.name, class="rating-"+author.rating)= author.name
-    .article-date= moment(date).fromNow()
+      a.rating(href='/profile/'+author.profile.username, class="rating-"+author.profile.rating)= author.profile.username
+    .article-date= moment(article.createdAt).fromNow()

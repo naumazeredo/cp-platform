@@ -3,6 +3,7 @@ var router = express.Router();
 var markdown = require('marked');
 
 var db = require('../config/db');
+var ObjectID = require('mongodb').ObjectID;
 
 /* GET articles listing. */
 router.get('/', function(req, res, next) {
@@ -47,12 +48,69 @@ router.get('/', function(req, res, next) {
 
 /* GET article. */
 router.get('/:id', function(req, res, next) {
-  var categories = [{title: 'Dynamic Programming', tag: 'dp', url: '#'}, {title: 'Graphs', tag: 'graphs', url: '#'}];
-  var author = {name: 'kogyblack', rating: 4};
-  var date = new Date(2015, 6, 1);
-  var content = markdown('# Article Title\n\n## This is the content\n\nText here just to complete\n\n- A\n- Simple\n- List\n\nJust to test things out\n');
-  var title = 'Article title';
-  res.render('article', { title: title, categories: categories, author: author, date: date, content: content });
+  // TODO(naum): Improve this!!!
+  db.get('articles').aggregate(
+    [
+      { $match : { _id : ObjectID(req.params.id) } },
+      {
+        $lookup : {
+          from : 'users',
+          localField : 'author_id',
+          foreignField : '_id',
+          as : 'author'
+        }
+      },
+      { $unwind : '$author' }
+    ],
+    function(err, article) {
+      if (err || !article)
+        next();
+
+      article = article[0];
+
+      db.get('categories').find(
+        {
+          $or : [
+            { tag : article.category },
+            { tag : { $in : article.tags } }
+          ]
+        },
+        function(err, cat) {
+          if (err || !cat)
+            next();
+
+          // TODO(naum): Add contributors ontributors (
+
+          // Create a category lookup by tag
+          var catLookup = {};
+          for (var i = 0; i < cat.length; ++i)
+            catLookup[cat[i].tag] = cat[i];
+
+          // Get category
+          var category = catLookup[article.category];
+
+          // Get tags
+          var tags = [];
+          for (var i = 0; i < article.tags.length; ++i)
+            tags.push(catLookup[article.tags[i]]);
+
+          // Get author
+          var author = article.author;
+
+          // Markdown text
+          article.content = markdown(article.content);
+
+          res.render('article', {
+            title : article.title,
+            category : category,
+            tags : tags,
+            author : author,
+            article : article
+          });
+        }
+      );
+    }
+  );
 });
 
 module.exports = router;
