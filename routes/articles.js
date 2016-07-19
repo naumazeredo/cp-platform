@@ -13,9 +13,9 @@ router.get('/', function(req, res, next) {
       { $match : { 'status' : 'Published' } },
       {
         $group: {
-          _id : '$category',
+          _id : '$category_tag',
           articles : { $push : '$$ROOT' },
-          //rating : { $avg : '$rating' } //TODO(naum): Sort by rating average(?)
+          //rating : { $avg : '$rating' } // TODO(naum): Sort by rating average(?)
         }
       },
       {
@@ -48,69 +48,75 @@ router.get('/', function(req, res, next) {
 
 /* GET article. */
 router.get('/:id', function(req, res, next) {
-  // TODO(naum): Improve this!!!
-  db.get('articles').aggregate(
-    [
-      { $match : { _id : ObjectID(req.params.id) } },
+  db.get('articles').findOne({ _id : ObjectID(req.params.id) }, function(err, article) {
+    if (err || !article)
+      next();
+
+    // Fetch users db
+    var usersPromise = db.get('users').find(
       {
-        $lookup : {
-          from : 'users',
-          localField : 'author_id',
-          foreignField : '_id',
-          as : 'author'
-        }
-      },
-      { $unwind : '$author' }
-    ],
-    function(err, article) {
-      if (err || !article)
-        next();
+        $or : [
+          { _id : ObjectID(article.author_id) },
+          { _id : { $in : article.contributor_ids.map(function(id) { return ObjectID(id); }) } }
+        ]
+      }
+    );
 
-      article = article[0];
+    // Fetch categories db
+    var categoriesPromise = db.get('categories').find(
+      {
+        $or : [
+          { tag : article.category },
+          { tag : { $in : article.tags } }
+        ]
+      }
+    );
 
-      db.get('categories').find(
-        {
-          $or : [
-            { tag : article.category },
-            { tag : { $in : article.tags } }
-          ]
-        },
-        function(err, cat) {
-          if (err || !cat)
-            next();
+    // Users resolve
+    usersPromise.then(function(users) {
+      var lookup = {};
+      for (var i = 0; i < users.length; ++i)
+        lookup[users[i]._id] = users[i];
 
-          // TODO(naum): Add contributors ontributors (
+      article.author = lookup[article.author_id];
 
-          // Create a category lookup by tag
-          var catLookup = {};
-          for (var i = 0; i < cat.length; ++i)
-            catLookup[cat[i].tag] = cat[i];
+      var contributors = [];
+      for (var i = 0; i < article.contributor_ids.length; ++i)
+        contributors.push(lookup[article.contributor_ids[i]]);
 
-          // Get category
-          var category = catLookup[article.category];
+      article.contributors = contributors;
+    });
 
-          // Get tags
-          var tags = [];
-          for (var i = 0; i < article.tags.length; ++i)
-            tags.push(catLookup[article.tags[i]]);
+    // Categories resolve
+    categoriesPromise.then(function(categories) {
+      // Create a category lookup by tag
+      var lookup = {};
+      for (var i = 0; i < categories.length; ++i)
+        lookup[categories[i].tag] = categories[i];
 
-          // Get author
-          var author = article.author;
+      // Get category
+      article.category = lookup[article.category_tag];
 
-          // Markdown text
-          article.content = markdown(article.content);
+      // Get tags
+      var tags = [];
+      for (var i = 0; i < article.tags.length; ++i)
+        tags.push(lookup[article.tags[i]]);
+      article.tags = tags;
+    });
 
-          res.render('article', {
-            title : article.title,
-            category : category,
-            tags : tags,
-            author : author,
-            article : article
-          });
-        }
-      );
-    }
-  );
+    Promise.all([usersPromise, categoriesPromise]).then(function() {
+      // Markdown content
+      article.content = markdown(article.content);
+
+      // Render page
+      res.render('article', {
+        title : article.title,
+        article : article
+      });
+    }).catch(function() {
+      next();
+    });
+  });
 });
 
 module.exports = router;

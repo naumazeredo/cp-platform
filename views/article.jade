@@ -7,7 +7,7 @@ block content
   .container.page-content
     .category-tags
       i.fa.fa-tags
-      each tag in tags
+      each tag in article.tags
         a.category-tag(href='#', title=tag.name)= tag.tag
     //-
     //- .requirements
@@ -15,5 +15,6 @@ block content
     div!= article.content
     hr
     .article-author
-      a.rating(href='/profile/'+author.profile.username, class="rating-"+author.profile.rating)= author.profile.username
+      - var author = article.author.profile
+      a.rating(href='/profile/'+author.username, class="rating-"+author.rating)= author.username
     .article-date= moment(article.createdAt).fromNow()
