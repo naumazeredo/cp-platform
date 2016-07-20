@@ -5,16 +5,21 @@ block menuitem
 
 block content
   .container.page-content
-    .category-tags
-      i.fa.fa-tags
-      each tag in article.tags
-        a.category-tag(href='#', title=tag.name)= tag.tag
-    //-
-    //- .requirements
-    //-   | requirements
+    .article-info
+      span.article-author
+        - var author = article.author.profile
+        a.rating(href='/profile/'+author.username, class="rating-"+author.rating)= author.username
+      .article-date.pull-right= moment(article.createdAt).fromNow()
+
     div!= article.content
     hr
-    .article-author
-      - var author = article.author.profile
-      a.rating(href='/profile/'+author.username, class="rating-"+author.rating)= author.username
-    .article-date= moment(article.createdAt).fromNow()
+    .article-category
+      i.fa.fa-folder-open
+      span= article.category.name
+    .article-tags
+      i.fa.fa-tags
+      each tag in article.tags
+        a.article-tag(href='#', title=tag.name)= tag.tag
+
+    //- TODO(naum): Article requirements
+    //- TODO(naum): Article history

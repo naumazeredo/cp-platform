@@ -1,0 +1,69 @@
+extends layout
+
+block menuitem
+  - var active = 'Articles';
+
+block links
+  //-link(rel='stylesheet', href='//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css')
+  //-link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css')
+  link(rel='stylesheet', href='/css/simplemde.min.css')
+  link(rel='stylesheet', href='/css/select2.min.css')
+  link(rel='stylesheet', href='/css/select2-bootstrap.min.css')
+  link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/monokai-sublime.min.css')
+
+block content
+  .container.page-content
+    form(action='/articles', method='post')
+      .form-group
+        input.form-control.new-article-title(placeholder='Article title')
+
+      textarea(id='editor', style='display:none')
+
+      .form-group.has-feedback.has-feedback-left
+        select.form-control.category-select
+          option
+          for category in categories
+            option(value=category.tag)= category.name
+        i.form-control-feedback.fa.fa-folder-open
+
+      .form-group.has-feedback.has-feedback-left
+        select.form-control.tags-select(multiple='multiple')
+          option
+        i.form-control-feedback.fa.fa-tags
+
+      .pull-right
+        button.btn.btn-info.new-article-btn Save draft
+        button.btn.btn-success.new-article-btn(type='submit') Send to correction
+
+block scripts
+  //-script(src='//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js')
+  //-script(src='//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js')
+  script(src='/js/simplemde.min.js')
+  script(src='/js/select2.min.js')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
+  script.
+    $('.category-select').select2({
+      theme : 'bootstrap',
+      placeholder : 'Select or create a category',
+      tags : true
+    });
+
+    $('.tags-select').select2({
+      theme : 'bootstrap',
+      placeholder : 'Select tags (comma separated)',
+      tags : true,
+      tokenSeparators : [',']
+    });
+
+    var simplemde = new SimpleMDE({
+      element : $('#editor')[0],
+      placeholder : '# Header 1\n## Header 2\n### Header 3\n\nSimple text\n\n- Unordered\n- List\n\n[link](http://www.codeforces.com)\n\n```\ncode\n```',
+      autoDownloadFontAwesome : false,
+      spellChecker : false,
+      hideIcons : ['side-by-side', 'fullscreen', 'guide'],
+      showIcons : ['code'],
+      renderingConfig : {
+        singlLineBreaks : true,
+        codeSyntaxHighlighting : true
+      }
+    });

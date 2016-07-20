@@ -22,3 +22,7 @@ block content
                   span.article-information
                     - difficulties = ["Newbie 0-1199", "Pupil 1200-1399", "Specialist 1400-1599", "Expert 1600-1899", "Candidate Master 1900-2199", "Master 2200-2299", "International Master 2300-2399", "Grandmaster 2400-2599", "International Grandmaster 2600-2899", "Legendary Grandmaster 2900+"];
                     i.rating.rating-icon.fa.fa-bookmark(class='rating-'+article.rating, data-toggle="tooltip", title=difficulties[article.rating])
+  if currentUser
+    .container
+      a(href="/articles/new")
+        button.btn.btn-success.pull-right(style='margin-top: 8px') Contribute

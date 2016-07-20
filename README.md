@@ -10,15 +10,17 @@ Platform to ease Competitive Programming learning.
 - [ ] Create Pages
   - [x] Register
   - [x] Login
-  - [ ] Article list
+  - [x] Article list
   - [ ] Article page
   - [ ] Glossary
   - [ ] New/Edit article
   - [ ] User settings
   - [ ] Search
   - [ ] Pending articles (extra)
-- [ ] Add LaTeX support (MathJax)
-- [ ] Add image upload (Dropzone)
+- [ ] Improve editor
+  - [ ] Don't use SimpleME (?)
+  - [ ] Add LaTeX support (MathJax)
+  - [ ] Add image upload (Dropzone)
 - [x] Write _Contributing_ section in README
 
 #### Removed

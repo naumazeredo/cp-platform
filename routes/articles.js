@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var markdown = require('marked');
+var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 var db = require('../config/db');
 var ObjectID = require('mongodb').ObjectID;
 
-/* GET articles listing. */
+/* GET articles listing */
 router.get('/', function(req, res, next) {
   // Get all articles published and group by categories (in categories order)
   db.get('articles').aggregate(
@@ -46,7 +47,13 @@ router.get('/', function(req, res, next) {
   );
 });
 
-/* GET article. */
+router.get('/new', ensureLoggedIn('/login'), function(req, res, next) {
+  db.get('categories').find({}, { sort : { order : 1 } }, function(err, categories) {
+    res.render('new-article', { title : 'New Article', categories : categories });
+  });
+});
+
+/* GET article */
 router.get('/:id', function(req, res, next) {
   db.get('articles').findOne({ _id : ObjectID(req.params.id) }, function(err, article) {
     if (err || !article)

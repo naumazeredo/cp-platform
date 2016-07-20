@@ -66,7 +66,16 @@ app.use('/fonts', express.static(path.join(__dirname, '/node_modules/bootstrap/d
 // Font-Awesome
 app.use('/css', express.static(path.join(__dirname, '/node_modules/font-awesome/css')));
 app.use('/fonts', express.static(path.join(__dirname, '/node_modules/font-awesome/fonts')));
-// ----------------------------------------------------
+
+// SimpleMDE
+app.use('/js', express.static(path.join(__dirname, '/node_modules/simplemde/dist')));
+app.use('/css', express.static(path.join(__dirname, '/node_modules/simplemde/dist')));
+
+// Select2
+app.use('/js', express.static(path.join(__dirname, '/node_modules/select2/dist/js')));
+app.use('/css', express.static(path.join(__dirname, '/node_modules/select2/dist/css')));
+app.use('/css', express.static(path.join(__dirname, '/node_modules/select2-bootstrap-theme/dist')));
+// ---------------------------------------------------
 
 /* Routes */
 var index    = require('./routes/index');
@@ -77,7 +86,6 @@ var login    = require('./routes/login');
 var logout   = require('./routes/logout');
 var signup   = require('./routes/signup');
 //var auth     = require('./routes/auth');
-
 var profile  = require('./routes/profile');
 
 app.use('/', index);
@@ -88,7 +96,6 @@ app.use('/login', login);
 app.use('/logout', logout);
 app.use('/signup', signup);
 //app.use('/auth', auth);
-
 app.use('/profile', profile);
 
 // catch 404 and forward to error handler
